@@ -5,7 +5,7 @@ import gst
 
 Incr = 200000000
 Delay = 0
-#RegDelay = 0
+RegDelay = 0
 #label0 = None
 
 def on_buttonX_clicked(widget):
@@ -21,6 +21,7 @@ def abutton(abox="", label="",event="",callback=on_buttonX_clicked):
 
 def Window():
     global button1
+    global button5
     global label0
 
     window = gtk.Window()
@@ -41,6 +42,7 @@ def Window():
     button3 = abutton(abox=box,label="Reset",event="clicked",callback=on_buttonReset_clicked)
     button4 = abutton(abox=box,label="Save",event="clicked",callback=on_buttonSave_clicked)
     button5 = abutton(abox=box,label="Restore",event="clicked",callback=on_buttonRestore_clicked)
+    button5.set_sensitive(False)
 
     window.show_all()
     QueueRun()
@@ -117,8 +119,11 @@ def on_buttonInc_clicked(widget):
     return
 
 def on_buttonSave_clicked(widget):
-    global Regdelay
-    Regdelay = Delay
+    global RegDelay
+    global button5
+    
+    button5.set_sensitive(True)
+    RegDelay = Delay
     changeDelay()
     return
 
@@ -133,7 +138,9 @@ def on_buttonReset_clicked(widget):
 
 def on_buttonRestore_clicked(widget):
     global Delay
-    Delay = Regdelay
+    global RegDelay
+    if ( RegDelay != 0):
+        Delay = RegDelay
     changeDelay()
     return
 
