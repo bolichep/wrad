@@ -25,7 +25,7 @@ def Window():
     global label0
 
     window = gtk.Window()
-    window.set_default_size(350,35)
+    window.set_default_size(400,55)
     window.set_position(gtk.WIN_POS_CENTER)
     window.connect("destroy", lambda w: gtk.main_quit())
 
